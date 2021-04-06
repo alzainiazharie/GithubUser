@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Github User 3</string>
+
+    <string name="search">Search</string>
+    <string name="settings_language">Ganti Bahasa</string>
+
+    <string name="username">Username</string>
+    <string name="name">Name</string>
+    <string name="company">Company</string>
+    <string name="location">Location</string>
+    <string name="followers">Pengikut</string>
+    <string name="following">Mengikuti</string>
+    <string name="repository">Penyimpanan</string>
+    <string name="hint_search">Cari berdasarkan username</string>
+
+</resources>
