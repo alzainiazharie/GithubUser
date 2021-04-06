@@ -12,6 +12,7 @@
     <string name="following">Following</string>
     <string name="repository">Repository</string>
     <string name="hint_search">Search by username</string>
+    <string name="list_favorite">Favorites List</string>
 
 
 </resources>
