@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.TABLE_NAME
+import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.USERNAME
 import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion._ID
 import java.sql.SQLException
 
@@ -46,15 +47,15 @@ class UserHelper(context: Context) {
                 null,
                 null,
                 null,
-                "$_ID ASC")
+                "$USERNAME ASC")
     }
 
     fun insert(values: ContentValues?): Long {
         return database.insert(DATABASE_TABLE, null, values)
     }
 
-    fun deleteById(id: String): Int{
-        return database.delete(DATABASE_TABLE, "$_ID = '$id", null)
+    fun deleteById(username: String): Int{
+        return database.delete(DATABASE_TABLE, "$USERNAME = '$username", null)
     }
 
 

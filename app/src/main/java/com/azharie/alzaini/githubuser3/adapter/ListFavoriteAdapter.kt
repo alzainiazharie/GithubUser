@@ -13,7 +13,7 @@ import com.bumptech.glide.request.RequestOptions
 class ListFavoriteAdapter(val listener: (User) -> Unit) :
     RecyclerView.Adapter<ListFavoriteAdapter.ListFavoriteViewHolder>() {
 //mungkin tidak private
-    private var listUser = ArrayList<User>()
+   var listUser = ArrayList<User>()
 /*    fun setData(items: ArrayList<User>) {
         listUser.clear()
         listUser.addAll(items)
