@@ -26,6 +26,10 @@ class FavoriteActivity : AppCompatActivity() {
         adapter = ListFavoriteAdapter(){
 
         }
+
+        binding.rvUserF.adapter = adapter
+
+
     }
 
 
