@@ -23,14 +23,14 @@ internal class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATAB
 
         private const val SQL_CREATE_TABLE_FAVORITE = "CREATE TABLE $TABLE_NAME" +
                 "($USERNAME TEXT PRIMARY KEY," +
-                "$AVATAR TEXT NOT NULL," +
-                "$FOLLOWERS INTEGER NOT NULL," +
-                "$FOLLOWING INTEGER NOT NULL," +
-                "$LOCATION TEXT NOT NULL," +
-                "$COMPANY TEXT NOT NULL," +
-                "$REPOSITORY INTEGER NOT NULL," +
-                "$USER_URL TEXT NOT NULL," +
-                "$NAME TEXT NOT NULL)"
+                "$AVATAR TEXT," +
+                "$FOLLOWERS INTEGER," +
+                "$FOLLOWING INTEGER," +
+                "$LOCATION TEXT," +
+                "$COMPANY TEXT," +
+                "$REPOSITORY INTEGER," +
+                "$USER_URL TEXT," +
+                "$NAME TEXT)"
 
     }
 

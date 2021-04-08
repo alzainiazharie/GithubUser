@@ -1,3 +1,4 @@
+
 package com.azharie.alzaini.githubuser3.activity
 
 import android.content.ContentValues
@@ -95,11 +96,11 @@ class DetailActivity : AppCompatActivity() {
 
             val username = binding.detaiUsername.text.toString()
 
-         /*   Glide.with(this)
-                .load(user?.avatar)
-                .into(binding.detailAvatar)*/
-            user = intent.getParcelableExtra(EXTRA_NOTE)
-            val avatar = user?.avatar
+            /*   Glide.with(this)
+                   .load(user?.avatar)
+                   .into(binding.detailAvatar)*/
+            //val ambil = intent.getParcelableExtra<User>(EXTRA_NOTE) as User
+            val avatar = intentUsername?.avatar
             val followers = binding.detailFollowers.text.toString()
             val following = binding.detailFollowing.text.toString()
             val location = binding.detailLocation.text.toString()
@@ -126,7 +127,7 @@ class DetailActivity : AppCompatActivity() {
 
             setStatusFabFavorite(statusFabFavorite)
 
-        //belum revisi state dan delete
+            //belum revisi state dan delete
 
         }
     }
