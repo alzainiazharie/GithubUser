@@ -51,7 +51,7 @@ class UserHelper(context: Context) {
     }
 
     fun queryByUsername(username: String): Cursor{
-        return database.query(DATABASE_TABLE, null, "$USERNAME", arrayOf(username),null, null, null, null)
+        return database.query(DATABASE_TABLE, null, "$USERNAME = ?", arrayOf(username),null, null, null, null)
     }
 
     fun insert(values: ContentValues?): Long {

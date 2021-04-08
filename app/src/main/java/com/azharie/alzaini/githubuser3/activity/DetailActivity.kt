@@ -94,12 +94,16 @@ class DetailActivity : AppCompatActivity() {
         userHelper = UserHelper.getInstance(applicationContext)
         userHelper.open()
 
-        /*val cursor: Cursor = userHelper.queryByUsername(intentUsername?.username.toString())
+        val cursor: Cursor = userHelper.queryByUsername(intentUsername?.username.toString())
         if (cursor.moveToNext()){
             statusFabFavorite = true
             setStatusFabFavorite(true)
-        }*/
+        }
 
+     /*   if (!statusFabFavorite){
+            setStatusFabFavorite(statusFabFavorite)
+        }
+*/
 
 
         binding.fabAdd.setOnClickListener {
@@ -146,6 +150,11 @@ class DetailActivity : AppCompatActivity() {
             //belum revisi state dan delete
 
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 
     fun loading(state: Boolean) {
