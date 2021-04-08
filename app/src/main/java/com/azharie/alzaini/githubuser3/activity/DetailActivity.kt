@@ -2,6 +2,7 @@
 package com.azharie.alzaini.githubuser3.activity
 
 import android.content.ContentValues
+import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
 import android.util.Log
@@ -48,6 +49,8 @@ class DetailActivity : AppCompatActivity() {
     private var postion: Int = 0
 
     private lateinit var userHelper: UserHelper
+
+    private var position: Int = 0
 
     companion object {
         @StringRes
@@ -143,7 +146,12 @@ class DetailActivity : AppCompatActivity() {
                 userHelper.deleteById(intentUsername?.username.toString())
                 statusFabFavorite = !statusFabFavorite
                 setStatusFabFavorite(statusFabFavorite)
+
+                val intentD = Intent()
+                intentD.putExtra(EXTRA_POSITION, position)
+                setResult(RESULT_DELETE, intentD)
                 Toast.makeText(this,"HAPUS DATA",Toast.LENGTH_SHORT).show()
+                finish()
             }
 
 
@@ -262,6 +270,14 @@ class DetailActivity : AppCompatActivity() {
 
 
     }
+
+/*
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }*/
+
 
 
 
