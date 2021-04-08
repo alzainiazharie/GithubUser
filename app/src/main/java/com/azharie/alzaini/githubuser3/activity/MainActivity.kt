@@ -84,16 +84,25 @@ class MainActivity : AppCompatActivity() {
                 getSearchUserByUsername(query)
 
                 return true
+
+
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
+                if (newText.isEmpty()) {
+                    getAllUsers()
+                } else {
+                    getSearchUserByUsername(newText)
+                }
 
-                return false
+                return true
             }
         })
         return true
 
     }
+
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.language){
@@ -111,6 +120,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun getAllUsers() {
+        showProgress(true)
         val client = AsyncHttpClient()
         val url = "https://api.github.com/users"
         client.addHeader("Authorization", "token 961fa2fbc20f6972434bfb86d78ca2f286b9a599")
