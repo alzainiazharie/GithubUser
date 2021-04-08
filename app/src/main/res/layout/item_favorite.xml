@@ -16,8 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@color/black"
         android:layout_marginBottom="8dp"
+        android:background="@color/black"
 
         android:padding="16dp">
 
@@ -34,24 +34,24 @@
 
         <TextView
             android:id="@+id/tvUrlF"
-            android:textColor="@color/white"
             android:layout_width="226dp"
             android:layout_height="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imgAvatar"
+            app:layout_constraintStart_toEndOf="@+id/imgAvatarF"
             tools:text="https://github.com/alzainiazharie" />
 
         <TextView
             android:id="@+id/tvNamaF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:text="@string/name"
             android:textColor="@color/white"
-            app:layout_constraintStart_toEndOf="@+id/imgAvatar"
+            app:layout_constraintStart_toEndOf="@+id/imgAvatarF"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -2,6 +2,7 @@
 package com.azharie.alzaini.githubuser3.activity
 
 import android.content.ContentValues
+import android.database.Cursor
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -76,6 +77,8 @@ class DetailActivity : AppCompatActivity() {
         sectionsPagerAdapter.username = intentUsername?.username
 
         binding.viewPager.adapter = sectionsPagerAdapter
+
+
         TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
             tab.text = resources.getString(TABS_TITLES[position])
 
@@ -83,49 +86,62 @@ class DetailActivity : AppCompatActivity() {
 
         supportActionBar?.elevation = 0f
 
+
+
         var statusFabFavorite = false
         setStatusFabFavorite(statusFabFavorite)
 
         userHelper = UserHelper.getInstance(applicationContext)
         userHelper.open()
 
+        /*val cursor: Cursor = userHelper.queryByUsername(intentUsername?.username.toString())
+        if (cursor.moveToNext()){
+            statusFabFavorite = true
+            setStatusFabFavorite(true)
+        }*/
+
 
 
         binding.fabAdd.setOnClickListener {
-            statusFabFavorite = !statusFabFavorite
+            if (!statusFabFavorite){
 
-            val username = binding.detaiUsername.text.toString()
 
-            /*   Glide.with(this)
-                   .load(user?.avatar)
-                   .into(binding.detailAvatar)*/
-            //val ambil = intent.getParcelableExtra<User>(EXTRA_NOTE) as User
-            val avatar = intentUsername?.avatar
-            val followers = binding.detailFollowers.text.toString()
-            val following = binding.detailFollowing.text.toString()
-            val location = binding.detailLocation.text.toString()
-            val company = binding.detailCompany.text.toString()
-            val repository = binding.detailRepository.text.toString()
-            val user_url = binding.detailUrl.text.toString()
-            val name = binding.detailName.text.toString()
 
-            val values = ContentValues()
-            values.put(USERNAME, username)
-            values.put(AVATAR, avatar)
-            values.put(FOLLOWERS, followers)
-            values.put(FOLLOWING, following)
-            values.put(LOCATION, location)
-            values.put(COMPANY, company)
-            values.put(REPOSITORY, repository)
-            values.put(USER_URL, user_url)
-            values.put(NAME, name)
+                val username = binding.detaiUsername.text.toString()
+                val avatar = intentUsername?.avatar
+                val followers = binding.detailFollowers.text.toString()
+                val following = binding.detailFollowing.text.toString()
+                val location = binding.detailLocation.text.toString()
+                val company = binding.detailCompany.text.toString()
+                val repository = binding.detailRepository.text.toString()
+                val user_url = binding.detailUrl.text.toString()
+                val name = binding.detailName.text.toString()
 
-            userHelper.insert(values)
+                val values = ContentValues()
+                values.put(USERNAME, username)
+                values.put(AVATAR, avatar)
+                values.put(FOLLOWERS, followers)
+                values.put(FOLLOWING, following)
+                values.put(LOCATION, location)
+                values.put(COMPANY, company)
+                values.put(REPOSITORY, repository)
+                values.put(USER_URL, user_url)
+                values.put(NAME, name)
 
-            setResult(RESULT_ADD, intent)
-            //finish()
+                userHelper.insert(values)
 
-            setStatusFabFavorite(statusFabFavorite)
+                setResult(RESULT_ADD, intent)
+                //finish()
+                statusFabFavorite = !statusFabFavorite
+                setStatusFabFavorite(statusFabFavorite)
+
+            } else{
+                userHelper.deleteById(intentUsername?.username.toString())
+                statusFabFavorite = !statusFabFavorite
+                setStatusFabFavorite(statusFabFavorite)
+                Toast.makeText(this,"HAPUS DATA",Toast.LENGTH_SHORT).show()
+            }
+
 
             //belum revisi state dan delete
 

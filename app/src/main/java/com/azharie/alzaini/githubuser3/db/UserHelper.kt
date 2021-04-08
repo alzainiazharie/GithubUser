@@ -50,12 +50,16 @@ class UserHelper(context: Context) {
                 "$USERNAME ASC")
     }
 
+    fun queryByUsername(username: String): Cursor{
+        return database.query(DATABASE_TABLE, null, "$USERNAME", arrayOf(username),null, null, null, null)
+    }
+
     fun insert(values: ContentValues?): Long {
         return database.insert(DATABASE_TABLE, null, values)
     }
 
     fun deleteById(username: String): Int{
-        return database.delete(DATABASE_TABLE, "$USERNAME = '$username", null)
+        return database.delete(DATABASE_TABLE, "$USERNAME = '$username'", null)
     }
 
 
