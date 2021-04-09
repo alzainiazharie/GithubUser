@@ -29,11 +29,11 @@ class SettingAlarmActivity : AppCompatActivity() {
 
         binding.switchAlarm.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
-                alarmReceiver.repeatingAlarm(applicationContext, AlarmReceiver.TYPE_REPEATING, "MAIN ACTIVITY","umu")
+                alarmReceiver.repeatingAlarm(applicationContext, getString(R.string.wanna))
 
 
             } else{
-                alarmReceiver.cancelAlarm(applicationContext, AlarmReceiver.TYPE_REPEATING)
+                alarmReceiver.cancelAlarm(applicationContext)
             }
             saveChecked(isChecked)
         }

@@ -14,6 +14,10 @@
     <string name="hint_search">Search by username</string>
     <string name="list_favorite">Favorites List</string>
     <string name="alarm_setting">Set an Alarm</string>
+    <string name="reminder">This is Reminder :)</string>
+    <string name="wanna">Want to see GitHub users?</string>
+    <string name="toast_cancel_alarm">Alarm has been canceled</string>
+    <string name="toast_set_alarm">Alarm has been set</string>
 
 
 </resources>

@@ -24,9 +24,9 @@
         android:layout_marginTop="16dp"
         android:text="@string/alarm_setting"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="@+id/pict_alarm"
         app:layout_constraintHorizontal_bias="0.511"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/pict_alarm"
+        app:layout_constraintTop_toBottomOf="@+id/pict_alarm"
         tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
 </androidx.constraintlayout.widget.ConstraintLayout>
