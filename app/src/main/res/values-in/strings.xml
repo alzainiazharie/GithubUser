@@ -14,5 +14,6 @@
     <string name="repository">Penyimpanan</string>
     <string name="hint_search">Cari berdasarkan username</string>
     <string name="list_favorite">Daftar Favorit</string>
+    <string name="alarm_setting">Pasang Alarm</string>
 
 </resources>

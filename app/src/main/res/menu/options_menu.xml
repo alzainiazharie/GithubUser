@@ -15,6 +15,9 @@
     <item
         android:id="@+id/favorite"
         android:title="@string/list_favorite"/>
+    <item
+        android:id="@+id/set_alarm"
+        android:title="@string/alarm_setting"/>
 
 
 </menu>

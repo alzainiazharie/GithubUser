@@ -115,6 +115,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, FavoriteActivity::class.java)
            startActivityForResult(intent, REQUEST_ADD)
         }
+
+        if (item.itemId == R.id.set_alarm){
+            val intent = Intent(this@MainActivity, SettingAlarmActivity::class.java)
+            startActivity(intent)
+        }
         return super.onOptionsItemSelected(item)
     }
 
