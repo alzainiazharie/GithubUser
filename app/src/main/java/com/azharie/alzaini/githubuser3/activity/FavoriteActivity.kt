@@ -1,7 +1,10 @@
 package com.azharie.alzaini.githubuser3.activity
 
 import android.content.Intent
+import android.database.ContentObserver
 import android.os.Bundle
+import android.os.Handler
+import android.os.HandlerThread
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +14,7 @@ import com.azharie.alzaini.githubuser3.activity.DetailActivity.Companion.EXTRA_P
 import com.azharie.alzaini.githubuser3.activity.DetailActivity.Companion.RESULT_DELETE
 import com.azharie.alzaini.githubuser3.adapter.ListFavoriteAdapter
 import com.azharie.alzaini.githubuser3.databinding.ActivityFavoriteBinding
+import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.CONTENT_URI
 import com.azharie.alzaini.githubuser3.db.UserHelper
 import com.azharie.alzaini.githubuser3.helper.MappingHelper
 import kotlinx.coroutines.Dispatchers
@@ -42,6 +46,19 @@ class FavoriteActivity : AppCompatActivity() {
         }
         binding.rvUserF.adapter = adapter
 
+        val handlerThread = HandlerThread("DataObserver")
+        handlerThread.start()
+        val handler = Handler(handlerThread.looper)
+
+        val myObserver = object  : ContentObserver(handler){
+            override fun onChange(selfChange: Boolean) {
+                loadUserSync()
+            }
+        }
+
+        contentResolver.registerContentObserver(CONTENT_URI, true, myObserver)
+
+
     }
 
     override fun onResume() {
@@ -55,7 +72,7 @@ class FavoriteActivity : AppCompatActivity() {
             val userHelper = UserHelper.getInstance(applicationContext)
             userHelper.open()
             val defferedUsers = async(Dispatchers.IO){
-                val cursor = userHelper.quearyAll()
+                val cursor = contentResolver.query(CONTENT_URI, null, null, null, null)
                 MappingHelper.mapCursorToArrayList(cursor)
             }
 

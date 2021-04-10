@@ -1,9 +1,9 @@
-
 package com.azharie.alzaini.githubuser3.activity
 
 import android.content.ContentValues
 import android.content.Intent
 import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -16,6 +16,7 @@ import com.azharie.alzaini.githubuser3.data.User
 import com.azharie.alzaini.githubuser3.databinding.ActivityDetailBinding
 import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.AVATAR
 import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.COMPANY
+import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.CONTENT_URI
 import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.FOLLOWERS
 import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.FOLLOWING
 import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.LOCATION
@@ -41,6 +42,10 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var userHelper: UserHelper
 
     private var position: Int = 0
+
+
+
+   private lateinit var uriWithId: Uri
 
     companion object {
         @StringRes
@@ -80,22 +85,27 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.elevation = 0f
 
 
-
         var statusFabFavorite = false
         setStatusFabFavorite(statusFabFavorite)
 
         userHelper = UserHelper.getInstance(applicationContext)
         userHelper.open()
 
+
+
         val cursor: Cursor = userHelper.queryByUsername(intentUsername?.username.toString())
-        if (cursor.moveToNext()){
+        if (cursor.moveToNext()) {
             statusFabFavorite = true
             setStatusFabFavorite(true)
         }
+        uriWithId = Uri.parse(CONTENT_URI.toString() + "/" + intentUsername?.username.toString())
+
+
 
         binding.fabAdd.setOnClickListener {
-            if (!statusFabFavorite){
 
+
+            if (!statusFabFavorite) {
 
 
                 val username = binding.detaiUsername.text.toString()
@@ -119,22 +129,22 @@ class DetailActivity : AppCompatActivity() {
                 values.put(USER_URL, user_url)
                 values.put(NAME, name)
 
-                userHelper.insert(values)
-
-                setResult(RESULT_ADD, intent)
+                contentResolver.insert(CONTENT_URI, values)
                 statusFabFavorite = !statusFabFavorite
                 setStatusFabFavorite(statusFabFavorite)
-                Toast.makeText(this, R.string.toast_follow_,Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.toast_follow_, Toast.LENGTH_SHORT).show()
 
-            } else{
-                userHelper.deleteById(intentUsername?.username.toString())
+            } else {
+                //userHelper.deleteById(intentUsername?.username.toString())
+
+                contentResolver.delete(uriWithId, null, null)
                 statusFabFavorite = !statusFabFavorite
                 setStatusFabFavorite(statusFabFavorite)
 
-                val intentD = Intent()
+                /*val intentD = Intent()
                 intentD.putExtra(EXTRA_POSITION, position)
-                setResult(RESULT_DELETE, intentD)
-                Toast.makeText(this,R.string.toast_not_follow,Toast.LENGTH_SHORT).show()
+                setResult(RESULT_DELETE, intentD)*/
+                Toast.makeText(this, R.string.toast_not_follow, Toast.LENGTH_SHORT).show()
                 finish()
             }
 
@@ -153,8 +163,8 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
-    private fun setStatusFabFavorite(statusFabFavorite: Boolean){
-        if (statusFabFavorite){
+    private fun setStatusFabFavorite(statusFabFavorite: Boolean) {
+        if (statusFabFavorite) {
             fab_add.setImageResource(R.drawable.ic_baseline_favorite_24)
 
         } else {
