@@ -23,9 +23,6 @@ class AlarmReceiver : BroadcastReceiver() {
         const val TYPE_REPEATING = "RepeatingAlarm"
         const val EXTRA_MESSAGE = "message"
 
-
-
-
         private const val ID_REPEATING = 101
 
     }
@@ -78,12 +75,6 @@ class AlarmReceiver : BroadcastReceiver() {
         calender.set(Calendar.MINUTE, 0)
         calender.set(Calendar.SECOND, 0)
 
-        //pending intent
-        /*
-        *         val pendingIntent = PendingIntent.getBroadcast(context, ID_REPEATING, intent, PendingIntent.FLAG_ONE_SHOT)
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calender.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
-        Toast.makeText(context, "Daily Reminder Set Up !", Toast.LENGTH_SHORT).show()
-        * */
         val pendingIntent = PendingIntent.getBroadcast(context, ID_REPEATING, intent, PendingIntent.FLAG_ONE_SHOT)
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calender.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
         Toast.makeText(context, R.string.toast_set_alarm,Toast.LENGTH_SHORT).show()

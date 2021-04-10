@@ -15,10 +15,13 @@
     <string name="hint_search">Cari berdasarkan username</string>
     <string name="list_favorite">Daftar Favorit</string>
     <string name="alarm_setting">Pasang Alarm</string>
-    <string name="reminder">Pengingat :)</string>
+
     <string name="wanna">Mau melihat pengguna GitHub ?</string>
     <string name="toast_cancel_alarm">Alarm telah dibatalkan</string>
     <string name="toast_set_alarm">Alarm telah dipasang</string>
+    <string name="toast_not_follow">Berhenti mengikuti</string>
+    <string name="toast_follow_">Kamu mengikuti user ini</string>
+    <string name="favorite_list">Daftar pengguna favorit</string>
 
 
 </resources>

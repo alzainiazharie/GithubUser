@@ -11,8 +11,6 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.azharie.alzaini.githubuser3.R
-import com.azharie.alzaini.githubuser3.adapter.ListFavoriteAdapter
-import com.azharie.alzaini.githubuser3.adapter.ListUserAdapter
 import com.azharie.alzaini.githubuser3.adapter.SectionsPagerAdapter
 import com.azharie.alzaini.githubuser3.data.User
 import com.azharie.alzaini.githubuser3.databinding.ActivityDetailBinding
@@ -38,15 +36,7 @@ import kotlinx.android.synthetic.main.item_users.*
 import org.json.JSONObject
 
 class DetailActivity : AppCompatActivity() {
-    //catatan perlu menghapus variable yg tidak perlu
     private lateinit var binding: ActivityDetailBinding
-    private lateinit var adapter: ListUserAdapter
-    val listUser = ArrayList<User>()
-
-    private var user: User? =null
-
-    private lateinit var adapterFavorite: ListFavoriteAdapter
-    private var postion: Int = 0
 
     private lateinit var userHelper: UserHelper
 
@@ -58,7 +48,7 @@ class DetailActivity : AppCompatActivity() {
             R.string.followers,
             R.string.following
         )
-        const val EXTRA_NOTE = "extra_note"
+
         const val EXTRA_POSITION = "extra_position"
         const val REQUEST_ADD = 100
         const val RESULT_ADD = 101
@@ -103,12 +93,6 @@ class DetailActivity : AppCompatActivity() {
             setStatusFabFavorite(true)
         }
 
-     /*   if (!statusFabFavorite){
-            setStatusFabFavorite(statusFabFavorite)
-        }
-*/
-
-
         binding.fabAdd.setOnClickListener {
             if (!statusFabFavorite){
 
@@ -138,9 +122,9 @@ class DetailActivity : AppCompatActivity() {
                 userHelper.insert(values)
 
                 setResult(RESULT_ADD, intent)
-                //finish()
                 statusFabFavorite = !statusFabFavorite
                 setStatusFabFavorite(statusFabFavorite)
+                Toast.makeText(this, R.string.toast_follow_,Toast.LENGTH_SHORT).show()
 
             } else{
                 userHelper.deleteById(intentUsername?.username.toString())
@@ -150,20 +134,14 @@ class DetailActivity : AppCompatActivity() {
                 val intentD = Intent()
                 intentD.putExtra(EXTRA_POSITION, position)
                 setResult(RESULT_DELETE, intentD)
-                Toast.makeText(this,"HAPUS DATA",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,R.string.toast_not_follow,Toast.LENGTH_SHORT).show()
                 finish()
             }
 
 
-            //belum revisi state dan delete
-
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-
-    }
 
     fun loading(state: Boolean) {
         if (state) {
@@ -178,7 +156,7 @@ class DetailActivity : AppCompatActivity() {
     private fun setStatusFabFavorite(statusFabFavorite: Boolean){
         if (statusFabFavorite){
             fab_add.setImageResource(R.drawable.ic_baseline_favorite_24)
-            Toast.makeText(this, "kamu melakukan Follow terhadap user ini",Toast.LENGTH_SHORT).show()
+
         } else {
 
             fab_add.setImageResource(R.drawable.ic_baseline_favorite_border_24)
@@ -211,7 +189,7 @@ class DetailActivity : AppCompatActivity() {
                     val followers = item.getInt("followers")
                     val following = item.getInt("following")
                     val location = item.getString("location")
-                    var company = item.getString("company")
+                    val company = item.getString("company")
                     val repository = item.getInt("public_repos")
                     val user_url = item.getString("html_url")
                     val name = item.getString("name")
@@ -270,15 +248,5 @@ class DetailActivity : AppCompatActivity() {
 
 
     }
-
-/*
-    override fun onBackPressed() {
-        super.onBackPressed()
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-    }*/
-
-
-
 
 }

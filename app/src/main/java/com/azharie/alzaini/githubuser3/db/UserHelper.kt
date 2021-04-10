@@ -6,7 +6,6 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.TABLE_NAME
 import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.USERNAME
-import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion._ID
 import java.sql.SQLException
 
 class UserHelper(context: Context) {

@@ -1,10 +1,10 @@
 package com.azharie.alzaini.githubuser3.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.azharie.alzaini.githubuser3.R
 import com.azharie.alzaini.githubuser3.activity.DetailActivity.Companion.EXTRA_POSITION
@@ -23,7 +23,6 @@ class FavoriteActivity : AppCompatActivity() {
     private lateinit var adapter: ListFavoriteAdapter
 
     companion object{
-        private const val EXTRA_STATE = "EXTRA_STATE"
         private const val USERNAME = "username"
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,26 +30,17 @@ class FavoriteActivity : AppCompatActivity() {
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = "FAVORITES LIST"
+        supportActionBar?.title = resources.getString(R.string.favorite_list)
 
         binding.rvUserF.layoutManager = LinearLayoutManager(this)
         binding.rvUserF.setHasFixedSize(true)
-        adapter = ListFavoriteAdapter(){
-/*
-*             val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra(USERNAME, it)
-            startActivity(intent)
-* */
+        adapter = ListFavoriteAdapter{
+
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra(USERNAME, it)
             startActivity(intent)
         }
         binding.rvUserF.adapter = adapter
-
-
-
-
-
 
     }
 
@@ -61,14 +51,14 @@ class FavoriteActivity : AppCompatActivity() {
 
     private fun loadUserSync(){
         GlobalScope.launch(Dispatchers.Main) {
-            //ada progress bar
+
             val userHelper = UserHelper.getInstance(applicationContext)
             userHelper.open()
             val defferedUsers = async(Dispatchers.IO){
                 val cursor = userHelper.quearyAll()
                 MappingHelper.mapCursorToArrayList(cursor)
             }
-            //progress bar
+
 
             val users = defferedUsers.await()
             if (users.size > 0){
@@ -77,7 +67,7 @@ class FavoriteActivity : AppCompatActivity() {
                 adapter.listUser = ArrayList()
                 Log.d("TAMPIL_FAVORITE", "Data tidak ada")
             }
-            //aku liat org pada close di apus :)
+
             userHelper.close()
 
         }
@@ -99,10 +89,5 @@ class FavoriteActivity : AppCompatActivity() {
             }
         }
     }
-  /*  override fun onBackPressed() {
-        val intentM = Intent(this, MainActivity::class.java)
-        startActivity(intentM)
-    }*/
-
 
 }

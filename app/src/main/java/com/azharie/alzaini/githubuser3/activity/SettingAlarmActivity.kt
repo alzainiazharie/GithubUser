@@ -2,8 +2,8 @@ package com.azharie.alzaini.githubuser3.activity
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.azharie.alzaini.githubuser3.R
 import com.azharie.alzaini.githubuser3.alarmnotif.AlarmReceiver
 import com.azharie.alzaini.githubuser3.databinding.ActivitySettingAlarmBinding

@@ -9,16 +9,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
 
-//adapter msih kurang, beda versi aku
+
 class ListFavoriteAdapter(val listener: (User) -> Unit) :
     RecyclerView.Adapter<ListFavoriteAdapter.ListFavoriteViewHolder>() {
-//mungkin tidak private
+
    var listUser = ArrayList<User>()
-/*    fun setData(items: ArrayList<User>) {
-        listUser.clear()
-        listUser.addAll(items)
-        notifyDataSetChanged()
-    }*/
+
         set(listUser) {
             if (listUser.size > 0) {
                 this.listUser.clear()
@@ -26,11 +22,6 @@ class ListFavoriteAdapter(val listener: (User) -> Unit) :
             this.listUser.addAll(listUser)
             notifyDataSetChanged()
         }
-
-    fun addItem(user: User) {
-        this.listUser.add(user)
-        notifyItemInserted(this.listUser.size - 1)
-    }
 
     fun removeItem(position: Int) {
         this.listUser.removeAt(position)

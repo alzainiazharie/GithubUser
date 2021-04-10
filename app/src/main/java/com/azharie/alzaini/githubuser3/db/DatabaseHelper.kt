@@ -13,7 +13,6 @@ import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Compa
 import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.TABLE_NAME
 import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.USERNAME
 import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.USER_URL
-import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion._ID
 
 internal class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
