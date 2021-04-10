@@ -1,11 +1,10 @@
-package com.azharie.alzaini.githubuser3.db
+package com.azharie.alzaini.consumerapp.db
 
-import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.TABLE_NAME
-import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.USERNAME
+import com.azharie.alzaini.consumerapp.db.DatabaseContract.FavoriteColumns.Companion.TABLE_NAME
+import com.azharie.alzaini.consumerapp.db.DatabaseContract.FavoriteColumns.Companion.USERNAME
 import java.sql.SQLException
 
 class UserHelper(context: Context) {
@@ -31,31 +30,8 @@ class UserHelper(context: Context) {
         database = databaseHelper.writableDatabase
     }
 
-    fun quearyAll(): Cursor {
-        return database.query(
-                DATABASE_TABLE,
-                null,
-                null,
-                null,
-                null,
-                null,
-                "$USERNAME ASC")
-    }
-
     fun queryByUsername(username: String): Cursor{
         return database.query(DATABASE_TABLE, null, "$USERNAME = ?", arrayOf(username),null, null, null, null)
-    }
-
-    fun insert(values: ContentValues?): Long {
-        return database.insert(DATABASE_TABLE, null, values)
-    }
-
-    fun update(username: String, values: ContentValues?): Int{
-        return database.update(DATABASE_TABLE, values, "$USERNAME = ?", arrayOf(username))
-    }
-
-    fun deleteById(username: String): Int{
-        return database.delete(DATABASE_TABLE, "$USERNAME = '$username'", null)
     }
 
 

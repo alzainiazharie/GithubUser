@@ -1,4 +1,4 @@
-package com.azharie.alzaini.githubuser3.activity
+package com.azharie.alzaini.consumerapp.activity
 
 import android.content.ContentValues
 import android.database.Cursor
@@ -9,21 +9,21 @@ import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import com.azharie.alzaini.githubuser3.R
-import com.azharie.alzaini.githubuser3.adapter.SectionsPagerAdapter
-import com.azharie.alzaini.githubuser3.data.User
-import com.azharie.alzaini.githubuser3.databinding.ActivityDetailBinding
-import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.AVATAR
-import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.COMPANY
-import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.CONTENT_URI
-import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.FOLLOWERS
-import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.FOLLOWING
-import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.LOCATION
-import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.NAME
-import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.REPOSITORY
-import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.USERNAME
-import com.azharie.alzaini.githubuser3.db.DatabaseContract.FavoriteColumns.Companion.USER_URL
-import com.azharie.alzaini.githubuser3.db.UserHelper
+import com.azharie.alzaini.consumerapp.R
+import com.azharie.alzaini.consumerapp.adapter.SectionsPagerAdapter
+import com.azharie.alzaini.consumerapp.data.User
+import com.azharie.alzaini.consumerapp.databinding.ActivityDetailBinding
+import com.azharie.alzaini.consumerapp.db.DatabaseContract.FavoriteColumns.Companion.AVATAR
+import com.azharie.alzaini.consumerapp.db.DatabaseContract.FavoriteColumns.Companion.COMPANY
+import com.azharie.alzaini.consumerapp.db.DatabaseContract.FavoriteColumns.Companion.CONTENT_URI
+import com.azharie.alzaini.consumerapp.db.DatabaseContract.FavoriteColumns.Companion.FOLLOWERS
+import com.azharie.alzaini.consumerapp.db.DatabaseContract.FavoriteColumns.Companion.FOLLOWING
+import com.azharie.alzaini.consumerapp.db.DatabaseContract.FavoriteColumns.Companion.LOCATION
+import com.azharie.alzaini.consumerapp.db.DatabaseContract.FavoriteColumns.Companion.NAME
+import com.azharie.alzaini.consumerapp.db.DatabaseContract.FavoriteColumns.Companion.REPOSITORY
+import com.azharie.alzaini.consumerapp.db.DatabaseContract.FavoriteColumns.Companion.USERNAME
+import com.azharie.alzaini.consumerapp.db.DatabaseContract.FavoriteColumns.Companion.USER_URL
+import com.azharie.alzaini.consumerapp.db.UserHelper
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.tabs.TabLayoutMediator
@@ -37,8 +37,8 @@ import org.json.JSONObject
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
-
     private lateinit var userHelper: UserHelper
+
 
     private lateinit var uriWithId: Uri
 
@@ -50,7 +50,7 @@ class DetailActivity : AppCompatActivity() {
         )
 
         const val EXTRA_POSITION = "extra_position"
-        const val REQUEST_ADD = 100
+
         const val RESULT_DELETE = 301
 
     }
@@ -79,7 +79,7 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.elevation = 0f
 
 
-        var statusFabFavorite = false
+        var statusFabFavorite = true
         setStatusFabFavorite(statusFabFavorite)
 
         userHelper = UserHelper.getInstance(applicationContext)
@@ -128,9 +128,12 @@ class DetailActivity : AppCompatActivity() {
                 Toast.makeText(this, R.string.toast_follow_, Toast.LENGTH_SHORT).show()
 
             } else {
+
+
                 contentResolver.delete(uriWithId, null, null)
                 statusFabFavorite = !statusFabFavorite
                 setStatusFabFavorite(statusFabFavorite)
+
                 Toast.makeText(this, R.string.toast_not_follow, Toast.LENGTH_SHORT).show()
                 finish()
             }

@@ -1,10 +1,10 @@
-package com.azharie.alzaini.githubuser3.adapter
+package com.azharie.alzaini.consumerapp.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.azharie.alzaini.githubuser3.data.User
-import com.azharie.alzaini.githubuser3.databinding.ItemUsersBinding
+import com.azharie.alzaini.consumerapp.data.User
+import com.azharie.alzaini.consumerapp.databinding.ItemUsersBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
@@ -16,6 +16,10 @@ class ListUserAdapter(val listener: (User) -> Unit) : RecyclerView.Adapter<ListU
         notifyDataSetChanged()
 
     }
+
+
+
+
 
     override fun onCreateViewHolder(
         viewGroup: ViewGroup,

@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Github User 3 Consumer</string>
+
+    <string name="search">Search</string>
+    <string name="settings_language">Change language</string>
+
+    <string name="username">Username</string>
+    <string name="name">Name</string>
+    <string name="company">Company</string>
+    <string name="location">Location</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="repository">Repository</string>
+    <string name="hint_search">Search by username</string>
+    <string name="list_favorite">Favorites List</string>
+
+    <string name="toast_not_follow">Stop Following</string>
+    <string name="toast_follow_">You follow this user</string>
+    <string name="favorite_list">List of favorite users</string>
+    <string name="github_user">GitHub user</string>
+
+
+</resources>

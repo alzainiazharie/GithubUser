@@ -32,7 +32,13 @@ class UserProvider : ContentProvider() {
         return true
     }
 
-    override fun query(uri: Uri, strings: Array<String>?, s: String?, strings1: Array<String>?, s1: String?): Cursor? {
+    override fun query(
+        uri: Uri,
+        strings: Array<String>?,
+        s: String?,
+        strings1: Array<String>?,
+        s1: String?
+    ): Cursor? {
         return when (sUriMatcher.match(uri)) {
             USER -> userHelper.quearyAll()
             USER_ID -> userHelper.queryByUsername(uri.lastPathSegment.toString())

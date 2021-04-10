@@ -1,4 +1,4 @@
-package com.azharie.alzaini.githubuser3.activity
+package com.azharie.alzaini.consumerapp.activity
 
 import android.app.SearchManager
 import android.content.Context
@@ -12,11 +12,10 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.azharie.alzaini.githubuser3.R
-import com.azharie.alzaini.githubuser3.activity.DetailActivity.Companion.REQUEST_ADD
-import com.azharie.alzaini.githubuser3.adapter.ListUserAdapter
-import com.azharie.alzaini.githubuser3.data.User
-import com.azharie.alzaini.githubuser3.databinding.ActivityMainBinding
+import com.azharie.alzaini.consumerapp.R
+import com.azharie.alzaini.consumerapp.adapter.ListUserAdapter
+import com.azharie.alzaini.consumerapp.data.User
+import com.azharie.alzaini.consumerapp.databinding.ActivityMainBinding
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
@@ -78,8 +77,13 @@ class MainActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String): Boolean {
+
+
                 getSearchUserByUsername(query)
+
                 return true
+
+
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
@@ -97,21 +101,17 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.language) {
+        if (item.itemId == R.id.language){
 
             val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
             startActivity(intent)
         }
 
-        if (item.itemId == R.id.favorite) {
+        if (item.itemId == R.id.favorite){
             val intent = Intent(this@MainActivity, FavoriteActivity::class.java)
-            startActivityForResult(intent, REQUEST_ADD)
-        }
-
-        if (item.itemId == R.id.set_alarm) {
-            val intent = Intent(this@MainActivity, SettingAlarmActivity::class.java)
-            startActivity(intent)
+           startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -236,6 +236,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 
 
 }
